@@ -11,15 +11,17 @@ public class ConsoleController {
 	private ConsoleModel consoleModel;
 	private ConsoleView consoleView;
 	public void startApplication() {
-		init();
+		this.consoleModel = new ConsoleModel();
+		this.consoleView = new ConsoleView(this);
 		consoleView.start();
 	}
 	
-	private void init() {
-		this.consoleModel = new ConsoleModel();
-		this.consoleView = new ConsoleView(this);
-	}
-	
+	/**
+m	 * Gets the next page from the consoleModel 
+	 * 
+	 * @param getLastPage
+	 * @return
+	 */
 	public List<FoodTruckDTO> getPage(boolean getLastPage) {
 		List<FoodTruckDTO> foodTruckList = null;
 		try {
@@ -30,6 +32,9 @@ public class ConsoleController {
 		return foodTruckList;
 	}
 
+	/**
+	 * Exits the program
+	 */
 	public void exit() {
 		System.exit(0);
 	}

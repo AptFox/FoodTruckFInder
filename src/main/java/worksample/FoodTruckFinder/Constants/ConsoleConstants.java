@@ -20,11 +20,12 @@ public final class ConsoleConstants {
 	}
 	
 	public static class ModelConstants{
+		//Model Constants
 		public static final Integer INITIAL_OFFSET = 0;
 		public static final Integer PAGE_SIZE = 10;
 		public static final String TIME_ZONE = "America/Los_Angeles";
 		
-		//API Constants
+		//Service/API Constants
 		public static final String API_BASE_URL ="https://data.sfgov.org";
 		public static final String API_RESOURCE_ID="bbb8-hzi6";
 		public static final String API_SOQL_FOOD_TRUCK_NAME="applicant";
