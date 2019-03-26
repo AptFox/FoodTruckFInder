@@ -7,16 +7,22 @@ import main.java.worksample.FoodTruckFinder.DTO.FoodTruckDTO;
 import main.java.worksample.FoodTruckFinder.controller.ConsoleController;
 
 public class ConsoleView {
+	//TODO make constants file
+	//TODO Add comments everywhere
+	//TODO Add method headers everywhere
 	private static final String NEXT_PAGE = "N";
 	private static final String LAST_PAGE = "L";
 	private static final String EXIT = "E";
 	private static final String EXIT_MSG = "Now Exiting...";
 	private static final String ADDRESS = "ADDRESS";
 	private static final String NAME = "NAME";
-	private static final String COMMAND_SIGNATURE = "Commands: %s = Next Page, %s = Last Page,  %s = EXIT";
+	private static final String COMMAND_SIGNATURE = "\n Commands: %s = Next Page, %s = Last Page,  %s = EXIT";
 	private static final String INVALID_INPUT = "\n INVALID INPUT. PLEASE TRY AGAIN.\n";
 	private static final String HEADER = "\n San Francisco Food Trucks Open Now! \n";
-	private static final String PADDING_SIZE = "27";
+	private static final String LEFT_PADDING_SIZE = "75";
+	private static final String RIGHT_PADDING_SIZE = "20";
+	private static final String CLEAR_CONSOLE = "\033\143";
+	private static final String NO_FOOD_TRUCKS_FOUND = "Sorry, I've either shown you all the trucks already or none are open.";
 	
 	private ConsoleController controller;
 	private Scanner scanner;
@@ -32,7 +38,6 @@ public class ConsoleView {
 	}
 	
 	public void start() {
-		printToConsole(HEADER);
 		printPage(records);
 		while(true) {
 			promptUserUntilValidInputFound();
@@ -42,11 +47,11 @@ public class ConsoleView {
 
 	private void promptUserUntilValidInputFound() {
 		String commandsOutput = String.format(COMMAND_SIGNATURE, NEXT_PAGE, LAST_PAGE, EXIT);
-		printToConsole(commandsOutput);
+		printToConsole(commandsOutput, true);
 		while(!inputIsValid) {
 			this.command = validateInput();
 			if(!inputIsValid) {
-				printToConsole(INVALID_INPUT);
+				printToConsole(INVALID_INPUT, true);
 			}
 		}	
 	}
@@ -62,7 +67,7 @@ public class ConsoleView {
 			printPage(controller.getPage(getLastPage));
 			break;
 		case EXIT :
-			printToConsole(EXIT_MSG);
+			printToConsole(EXIT_MSG, true);
 			controller.exit();
 			break;
 		}
@@ -83,23 +88,34 @@ public class ConsoleView {
 		return validatedInput;
 	}
 	
-	private void printToConsole(String msg) {
-		System.out.println(msg);
+	private void printToConsole(String msg, boolean printWholeLine) {
+		if(printWholeLine) {
+			System.out.println(msg);
+		}else {
+			System.out.print(msg);
+		}
 	}
 	
 	private String formatColumnRow(String leftHeader, String rightHeader) {
-		String leftPadding = "%-"+PADDING_SIZE+"s";
-		String rightPadding = "%"+PADDING_SIZE+"s";
+		String leftPadding = "%-"+LEFT_PADDING_SIZE+"s";
+		String rightPadding = "%-"+RIGHT_PADDING_SIZE+"s";
 		String formattedRow = String.format(leftPadding, leftHeader) + String.format(rightPadding, rightHeader); 
 		return formattedRow;
 	}
 	
 	private void printPage(List<FoodTruckDTO> records) {
-		String formattedHeader = formatColumnRow(NAME, ADDRESS);
-		printToConsole(formattedHeader);
-		for(FoodTruckDTO foodTruck : records) {
-			String row = formatColumnRow(foodTruck.getApplicant(),foodTruck.getLocation());
-			printToConsole(row);
+		printToConsole(CLEAR_CONSOLE, false);
+		printToConsole(HEADER, true);
+		if(records == null || records.size() == 0) {
+			printToConsole(NO_FOOD_TRUCKS_FOUND, true);
+		}else {
+			String formattedHeader = formatColumnRow(NAME, ADDRESS);
+			printToConsole(formattedHeader, true);
+			for(FoodTruckDTO foodTruck : records) {
+				String row = formatColumnRow(foodTruck.getApplicant(),foodTruck.getLocation());
+				printToConsole(row, true);
+			}
 		}
 	}
+	
 }
