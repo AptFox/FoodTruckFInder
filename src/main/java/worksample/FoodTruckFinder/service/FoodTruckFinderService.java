@@ -3,7 +3,6 @@ package main.java.worksample.FoodTruckFinder.service;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
 import com.socrata.api.Soda2Consumer;
 import com.socrata.builders.SoqlQueryBuilder;
 import com.socrata.exceptions.LongRunningQueryException;
@@ -14,8 +13,8 @@ import com.socrata.model.soql.Expression;
 import com.socrata.model.soql.OrderByClause;
 import com.socrata.model.soql.SoqlQuery;
 import com.socrata.model.soql.SortOrder;
-import static main.java.worksample.FoodTruckFinder.Constants.Constants.ModelConstants.*;
 import main.java.worksample.FoodTruckFinder.DTO.FoodTruckDTO;
+import static main.java.worksample.FoodTruckFinder.Constants.ConsoleConstants.ModelConstants.*;
 
 public class FoodTruckFinderService {
 	
@@ -29,7 +28,7 @@ public class FoodTruckFinderService {
 		String formattedQuery = String.format(expression, value);
 		return new ConditionalExpression(formattedQuery);
 	}
-
+	
 	public List<FoodTruckDTO> getPage(Integer offset, Integer pageSize, Calendar cal) throws LongRunningQueryException{
 		List<FoodTruckDTO> foodTrucks = new ArrayList<FoodTruckDTO>(); 
 		Integer currentHour = cal.get(Calendar.HOUR_OF_DAY); //24H format

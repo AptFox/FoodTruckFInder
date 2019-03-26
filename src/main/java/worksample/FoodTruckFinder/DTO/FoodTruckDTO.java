@@ -1,9 +1,7 @@
 package main.java.worksample.FoodTruckFinder.DTO;
 
 import java.util.List;
-
 import javax.ws.rs.core.GenericType;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

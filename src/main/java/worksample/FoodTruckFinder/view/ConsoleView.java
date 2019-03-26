@@ -2,9 +2,9 @@ package main.java.worksample.FoodTruckFinder.view;
 
 import java.util.List;
 import java.util.Scanner;
-import static main.java.worksample.FoodTruckFinder.Constants.Constants.ViewConstants.*;
 import main.java.worksample.FoodTruckFinder.DTO.FoodTruckDTO;
 import main.java.worksample.FoodTruckFinder.controller.ConsoleController;
+import static main.java.worksample.FoodTruckFinder.Constants.ConsoleConstants.ViewConstants.*;
 
 public class ConsoleView {
 	
@@ -29,6 +29,10 @@ public class ConsoleView {
 		}
 	}
 
+	/**
+	 * Repeatedly prompts the user for input.
+	 * Outputs an error message if invalid input is entered.
+	 */
 	private void promptUserUntilValidInputFound() {
 		String commandsOutput = String.format(COMMAND_SIGNATURE, NEXT_PAGE, LAST_PAGE, EXIT);
 		printToConsole(commandsOutput, true);
@@ -40,6 +44,9 @@ public class ConsoleView {
 		}	
 	}
 	
+	/**
+	 * Executes the command entered by the user
+	 */
 	private void executeCommand() {
 		switch (command) {
 		case NEXT_PAGE:
@@ -59,6 +66,11 @@ public class ConsoleView {
 		inputIsValid = false;
 	}
 	
+	/**
+	 * Checks if user input is equal to NEXT_PAGE, LAST_PAGE or EXIT commands
+	 * 
+	 * @return validated input string
+	 */
 	private String validateInput() {
 		String input = scanner.nextLine();
 		String validatedInput = null;
@@ -72,6 +84,12 @@ public class ConsoleView {
 		return validatedInput;
 	}
 	
+	/**
+	 * Prints the supplied string to the console. 
+	 * 
+	 * @param msg              The message to be printed
+	 * @param printWholeLine   A boolean signifying if the message should consume an entire line
+	 */
 	private void printToConsole(String msg, boolean printWholeLine) {
 		if(printWholeLine) {
 			System.out.println(msg);
@@ -80,13 +98,26 @@ public class ConsoleView {
 		}
 	}
 	
-	private String formatColumnRow(String leftHeader, String rightHeader) {
+	/**
+	 * Prints the supplied values to the console and pads them to based on the constants file 
+	 * 
+	 * @param leftValue    
+	 * @param rightValue   
+	 * @return
+	 */
+	private String formatColumnRow(String leftValue, String rightValue) {
 		String leftPadding = "%-"+LEFT_PADDING_SIZE+"s";
 		String rightPadding = "%-"+RIGHT_PADDING_SIZE+"s";
-		String formattedRow = String.format(leftPadding, leftHeader) + String.format(rightPadding, rightHeader); 
+		String formattedRow = String.format(leftPadding, leftValue) + String.format(rightPadding, rightValue); 
 		return formattedRow;
 	}
 	
+	
+	/**
+	 * Clears the console and prints the supplied set of records
+	 * 
+	 * @param records  A list of foodTruck records.
+	 */
 	private void printPage(List<FoodTruckDTO> records) {
 		printToConsole(CLEAR_CONSOLE, false);
 		printToConsole(HEADER, true);

@@ -7,9 +7,9 @@ import java.util.TimeZone;
 import com.socrata.exceptions.LongRunningQueryException;
 import main.java.worksample.FoodTruckFinder.DTO.FoodTruckDTO;
 import main.java.worksample.FoodTruckFinder.service.FoodTruckFinderService;
-import static main.java.worksample.FoodTruckFinder.Constants.Constants.ModelConstants.INITIAL_OFFSET;
-import static main.java.worksample.FoodTruckFinder.Constants.Constants.ModelConstants.PAGE_SIZE;
-import static main.java.worksample.FoodTruckFinder.Constants.Constants.ModelConstants.TIME_ZONE;
+import static main.java.worksample.FoodTruckFinder.Constants.ConsoleConstants.ModelConstants.INITIAL_OFFSET;
+import static main.java.worksample.FoodTruckFinder.Constants.ConsoleConstants.ModelConstants.PAGE_SIZE;
+import static main.java.worksample.FoodTruckFinder.Constants.ConsoleConstants.ModelConstants.TIME_ZONE;
 
 public class ConsoleModel{
 	

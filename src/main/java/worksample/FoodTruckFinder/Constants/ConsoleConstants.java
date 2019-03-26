@@ -1,6 +1,6 @@
 package main.java.worksample.FoodTruckFinder.Constants;
 
-public final class Constants {
+public final class ConsoleConstants {
 	
 	public static class ViewConstants{
 		//View constants

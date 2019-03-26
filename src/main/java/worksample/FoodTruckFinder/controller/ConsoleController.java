@@ -1,9 +1,7 @@
 package main.java.worksample.FoodTruckFinder.controller;
 
 import java.util.List;
-
 import com.socrata.exceptions.LongRunningQueryException;
-
 import main.java.worksample.FoodTruckFinder.DTO.FoodTruckDTO;
 import main.java.worksample.FoodTruckFinder.model.ConsoleModel;
 import main.java.worksample.FoodTruckFinder.view.ConsoleView;
