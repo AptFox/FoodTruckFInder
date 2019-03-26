@@ -4,17 +4,14 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.TimeZone;
-
 import com.socrata.exceptions.LongRunningQueryException;
-
 import main.java.worksample.FoodTruckFinder.DTO.FoodTruckDTO;
 import main.java.worksample.FoodTruckFinder.service.FoodTruckFinderService;
+import static main.java.worksample.FoodTruckFinder.Constants.Constants.ModelConstants.INITIAL_OFFSET;
+import static main.java.worksample.FoodTruckFinder.Constants.Constants.ModelConstants.PAGE_SIZE;
+import static main.java.worksample.FoodTruckFinder.Constants.Constants.ModelConstants.TIME_ZONE;
 
 public class ConsoleModel{
-	
-	public static final Integer INITIAL_OFFSET = 0;
-	public static final Integer PAGE_SIZE = 10;
-	public static final String TIME_ZONE = "America/Los_Angeles";
 	
 	private List<FoodTruckDTO> currentPage;
 	private Calendar cal;

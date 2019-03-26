@@ -14,23 +14,11 @@ import com.socrata.model.soql.Expression;
 import com.socrata.model.soql.OrderByClause;
 import com.socrata.model.soql.SoqlQuery;
 import com.socrata.model.soql.SortOrder;
-
+import static main.java.worksample.FoodTruckFinder.Constants.Constants.ModelConstants.*;
 import main.java.worksample.FoodTruckFinder.DTO.FoodTruckDTO;
 
 public class FoodTruckFinderService {
-	//Make constants file
-	private static final String API_BASE_URL ="https://data.sfgov.org";
-	private static final String API_RESOURCE_ID="bbb8-hzi6";
-	private static final String API_SOQL_FOOD_TRUCK_NAME="applicant";
-	private static final String API_SOQL_FOOD_TRUCK_ADDR="location";
-	private static final String API_SOQL_WEEKDAY="dayorder";
-	private static final String API_SOQL_OPENING_HOUR="start24";
-	private static final String API_SOQL_CLOSING_HOUR="end24";
-	private static final String CURRENT_DAY_EXPRESSION="dayorder=%s";
-	private static final String STARTING_HOUR_EXPRESSION="start24<='%s:00'";
-	private static final String ENDING_HOUR_EXPRESSION="end24>'%s:00'";
-	private static final Integer API_SUNDAY_INT = 0;
-	private static final Integer JAVA_SUNDAY_INT = 7;
+	
 	private Soda2Consumer consumer;
 	
 	public FoodTruckFinderService() {

@@ -2,27 +2,11 @@ package main.java.worksample.FoodTruckFinder.view;
 
 import java.util.List;
 import java.util.Scanner;
-
+import static main.java.worksample.FoodTruckFinder.Constants.Constants.ViewConstants.*;
 import main.java.worksample.FoodTruckFinder.DTO.FoodTruckDTO;
 import main.java.worksample.FoodTruckFinder.controller.ConsoleController;
 
 public class ConsoleView {
-	//TODO make constants file
-	//TODO Add comments everywhere
-	//TODO Add method headers everywhere
-	private static final String NEXT_PAGE = "N";
-	private static final String LAST_PAGE = "L";
-	private static final String EXIT = "E";
-	private static final String EXIT_MSG = "Now Exiting...";
-	private static final String ADDRESS = "ADDRESS";
-	private static final String NAME = "NAME";
-	private static final String COMMAND_SIGNATURE = "\n Commands: %s = Next Page, %s = Last Page,  %s = EXIT";
-	private static final String INVALID_INPUT = "\n INVALID INPUT. PLEASE TRY AGAIN.\n";
-	private static final String HEADER = "\n San Francisco Food Trucks Open Now! \n";
-	private static final String LEFT_PADDING_SIZE = "75";
-	private static final String RIGHT_PADDING_SIZE = "20";
-	private static final String CLEAR_CONSOLE = "\033\143";
-	private static final String NO_FOOD_TRUCKS_FOUND = "Sorry, I've either shown you all the trucks already or none are open.";
 	
 	private ConsoleController controller;
 	private Scanner scanner;
