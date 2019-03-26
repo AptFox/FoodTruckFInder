@@ -12,6 +12,10 @@ import main.java.worksample.FoodTruckFinder.service.FoodTruckFinderService;
 
 public class ConsoleModel{
 	
+	public static final Integer INITIAL_OFFSET = 0;
+	public static final Integer PAGE_SIZE = 10;
+	public static final String TIME_ZONE = "America/Los_Angeles";
+	
 	private List<FoodTruckDTO> currentPage;
 	private Calendar cal;
 
@@ -19,32 +23,28 @@ public class ConsoleModel{
 	private Integer offset;
 	private Integer pageSize;
 	
-	public ConsoleModel(Integer offset, Integer pageSize) {
-		this.offset = offset;
-		this.pageSize = pageSize;
+	public ConsoleModel() {
+		this.offset = INITIAL_OFFSET;
+		this.pageSize = PAGE_SIZE;
 		init();
 	}
 
 	private void init() {
-		cal = new GregorianCalendar(TimeZone.getTimeZone("America/Los_Angeles"));
+		cal = new GregorianCalendar(TimeZone.getTimeZone(TIME_ZONE));
 	}
 
 	/*
 	 * Gets next or last page of records
 	 */
-	public List<FoodTruckDTO> getPage(boolean getLastPage) {
+	public List<FoodTruckDTO> getPage(boolean getLastPage) throws LongRunningQueryException{
 
 		if(getLastPage && offset > 0) {
 			offset -= pageSize;
-		}else if(currentPage != null){
-			offset += currentPage.size();
+		}else if(currentPage != null && !getLastPage){
+			offset += pageSize;
 		}
-		try {
-			currentPage = service.getPage(offset, pageSize, cal);
-		} catch (LongRunningQueryException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		currentPage = service.getPage(offset, pageSize, cal);
+		
 		return currentPage;
 	}
 	

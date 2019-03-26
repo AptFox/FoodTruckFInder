@@ -2,14 +2,14 @@ package main.java.worksample.FoodTruckFinder.controller;
 
 import java.util.List;
 
+import com.socrata.exceptions.LongRunningQueryException;
+
 import main.java.worksample.FoodTruckFinder.DTO.FoodTruckDTO;
 import main.java.worksample.FoodTruckFinder.model.ConsoleModel;
 import main.java.worksample.FoodTruckFinder.view.ConsoleView;
 
 public class ConsoleController {
-	public static final Integer INITIAL_OFFSET = 0;
-	public static final Integer PAGE_SIZE = 10;
-	
+
 	private ConsoleModel consoleModel;
 	private ConsoleView consoleView;
 	public void startApplication() {
@@ -18,12 +18,18 @@ public class ConsoleController {
 	}
 	
 	private void init() {
-		this.consoleModel = new ConsoleModel(INITIAL_OFFSET, PAGE_SIZE);
+		this.consoleModel = new ConsoleModel();
 		this.consoleView = new ConsoleView(this);
 	}
 	
 	public List<FoodTruckDTO> getPage(boolean getLastPage) {
-		return consoleModel.getPage(getLastPage);
+		List<FoodTruckDTO> foodTruckList = null;
+		try {
+			foodTruckList = consoleModel.getPage(getLastPage);
+		} catch (LongRunningQueryException e) {
+			e.printStackTrace();
+		}
+		return foodTruckList;
 	}
 
 	public void exit() {

@@ -112,7 +112,7 @@ public class ConsoleView {
 			String formattedHeader = formatColumnRow(NAME, ADDRESS);
 			printToConsole(formattedHeader, true);
 			for(FoodTruckDTO foodTruck : records) {
-				String row = formatColumnRow(foodTruck.getApplicant(),foodTruck.getLocation());
+				String row = formatColumnRow(foodTruck.getName(),foodTruck.getAddress());
 				printToConsole(row, true);
 			}
 		}

@@ -10,44 +10,43 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class FoodTruckDTO {
-	
 	public static final GenericType<List<FoodTruckDTO>> LIST_TYPE = new GenericType<List<FoodTruckDTO>>() {};
-	private String applicant;
-	private String location;
+	private String name;
+	private String address;
 	private Integer dayorder;
-	private String start24;
-	private String end24;
+	private String openingHour;
+	private String closingHour;
 	
 	@JsonCreator
-	public FoodTruckDTO(@JsonProperty("applicant") String applicant,
-						@JsonProperty("location") String location,
+	public FoodTruckDTO(@JsonProperty("applicant") String name,
+						@JsonProperty("location") String address,
 						@JsonProperty("dayorder") Integer dayorder,
-						@JsonProperty("start24") String start24,
-						@JsonProperty("end24") String end24) {
-		this.applicant = applicant;
-		this.location = location;
+						@JsonProperty("start24") String openingHour,
+						@JsonProperty("end24") String closingHour) {
+		this.name = name;
+		this.address = address;
 		this.dayorder = dayorder;
-		this.start24 = start24;
-		this.end24 = end24;
+		this.openingHour = openingHour;
+		this.closingHour = closingHour;
 	}
 	
 	@JsonProperty("applicant")
-	public String getApplicant() {
-		return applicant;
+	public String getName() {
+		return name;
 	}
 
 
-	public void setApplicant(String name) {
-		this.applicant = name;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@JsonProperty("location")
-	public String getLocation() {
-		return location;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setLocation(String address) {
-		this.location = address;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	
 	@JsonProperty("dayorder")
@@ -60,20 +59,20 @@ public class FoodTruckDTO {
 	}
 	
 	@JsonProperty("start24")
-	public String getStart24() {
-		return start24;
+	public String getOpeningHour() {
+		return openingHour;
 	}
 
-	public void setStart24(String start24) {
-		this.start24 = start24;
+	public void setOpeningHour(String openingHour) {
+		this.openingHour = openingHour;
 	}
 	
 	@JsonProperty("end24")
-	public String getEnd24() {
-		return end24;
+	public String getClosingHour() {
+		return closingHour;
 	}
 
-	public void setEnd24(String end24) {
-		this.end24 = end24;
+	public void setClosingHour(String closingHour) {
+		this.closingHour = closingHour;
 	}
 }
