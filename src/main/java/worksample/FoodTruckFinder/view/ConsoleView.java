@@ -10,6 +10,7 @@ public class ConsoleView {
 	private static final String NEXT_PAGE = "N";
 	private static final String LAST_PAGE = "L";
 	private static final String EXIT = "E";
+	private static final String EXIT_MSG = "Now Exiting...";
 	private static final String ADDRESS = "ADDRESS";
 	private static final String NAME = "NAME";
 	private static final String COMMAND_SIGNATURE = "Commands: %s = Next Page, %s = Last Page,  %s = EXIT";
@@ -22,15 +23,17 @@ public class ConsoleView {
 	private String command;
 	private boolean inputIsValid = false;
 	private boolean getLastPage = false;
+	private List<FoodTruckDTO> records;
 	
 	public ConsoleView(ConsoleController controller) {
 		scanner = new Scanner(System.in);
 		this.controller = controller;
+		records = controller.getPage(getLastPage);
 	}
 	
 	public void start() {
 		printToConsole(HEADER);
-		printPage(controller.getPage(getLastPage));
+		printPage(records);
 		while(true) {
 			promptUserUntilValidInputFound();
 			executeCommand();
@@ -41,7 +44,7 @@ public class ConsoleView {
 		String commandsOutput = String.format(COMMAND_SIGNATURE, NEXT_PAGE, LAST_PAGE, EXIT);
 		printToConsole(commandsOutput);
 		while(!inputIsValid) {
-			listenForInput();
+			this.command = validateInput();
 			if(!inputIsValid) {
 				printToConsole(INVALID_INPUT);
 			}
@@ -59,18 +62,16 @@ public class ConsoleView {
 			printPage(controller.getPage(getLastPage));
 			break;
 		case EXIT :
+			printToConsole(EXIT_MSG);
 			controller.exit();
 			break;
 		}
-		
-	}
-
-	private void listenForInput() {
-		String enteredText = scanner.nextLine();
-		this.command = validateInput(enteredText);
+		command = null;
+		inputIsValid = false;
 	}
 	
-	private String validateInput(String input) {
+	private String validateInput() {
+		String input = scanner.nextLine();
 		String validatedInput = null;
 		this.inputIsValid  = input != null && 
 								(input.equalsIgnoreCase(NEXT_PAGE) ||
@@ -97,7 +98,7 @@ public class ConsoleView {
 		String formattedHeader = formatColumnRow(NAME, ADDRESS);
 		printToConsole(formattedHeader);
 		for(FoodTruckDTO foodTruck : records) {
-			String row = formatColumnRow(foodTruck.getName(),foodTruck.getAddress());
+			String row = formatColumnRow(foodTruck.getApplicant(),foodTruck.getLocation());
 			printToConsole(row);
 		}
 	}
