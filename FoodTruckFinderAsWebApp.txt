@@ -1,0 +1,6 @@
+
+
+A one- or two-paragraph write-up describing, at a high level, what you would do
+differently if you were asked to build this as a full-scale web application. In your write-up,
+please focus on the technical differences between the command-line program and the
+web application, rather than on the product differences.
