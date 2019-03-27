@@ -1,23 +1,33 @@
 Steps to convert FoodTruckFinder to a web-app:
 
+
+MISC
+---------
+Put everything into version control (Git)
+
 FRONT-END
 ---------
-Write a front-end for the application in Angular or PrimeFaces (Really anything compatible with Java).
+Write a front-end for the application in Angular or PrimeFaces (Really, anything compatible with Java).
+Setup better input validation within the new front-end.
+Map input commands to UI buttons.
 
 BACK-END
 --------
 Add logs everywhere.
+Move some of the constants to a properties file
+Get a set of credentials for the Socrata API
+Close the API connection after each call.
+Make a cache of common API responses for 24 hours to avoid excessive API calls and provide resiliency if the Socrata API is down for a day. 
+	Cache could either be in a DB instance or an actual cache server (AWS would work for either). 
+	Cache would make the app appear blazing fast.
+	Cache rules:	Check cache and if value not found or value greater than 24 hours, make API call for new value. Store value in cache. 
 Modify MVC to accommodate new UI framework.
-Decouple UI from back-end, with Interfaces and Dependency Injection (Spring Framework).
+Decouple UI from back-end in case I ever need to expand features. (with Interfaces and Dependency Injection, i.e. Spring Framework).
 Package application into a WAR instead of a JAR.
 
 INFRASTRUCTURE
 --------------
+OS: Linux
 Web Server: Apache Tomcat
-Deploy on AWS Elastic Beanstalk instance (already has Tomcat)
-
-Prompt:
-A one- or two-paragraph write-up describing, at a high level, what you would do
-differently if you were asked to build this as a full-scale web application. In your write-up,
-please focus on the technical differences between the command-line program and the
-web application, rather than on the product differences.
+Deploy on AWS Elastic Beanstalk instance (already has the things)
+Buy a domain and configure it to point to web-app server
