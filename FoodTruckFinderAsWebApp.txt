@@ -1,5 +1,22 @@
+Steps to convert FoodTruckFinder to a web-app:
 
+FRONT-END
+---------
+Write a front-end for the application in Angular or PrimeFaces (Really anything compatible with Java).
 
+BACK-END
+--------
+Add logs everywhere.
+Modify MVC to accommodate new UI framework.
+Decouple UI from back-end, with Interfaces and Dependency Injection (Spring Framework).
+Package application into a WAR instead of a JAR.
+
+INFRASTRUCTURE
+--------------
+Web Server: Apache Tomcat
+Deploy on AWS Elastic Beanstalk instance (already has Tomcat)
+
+Prompt:
 A one- or two-paragraph write-up describing, at a high level, what you would do
 differently if you were asked to build this as a full-scale web application. In your write-up,
 please focus on the technical differences between the command-line program and the
